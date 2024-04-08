@@ -6,13 +6,7 @@ pipeline {
             steps {
                 // Run TruffleHog scan
                 sh 'trufflehog --regex --entropy=True .'
-              script {
-                    // Run TruffleHog scan and capture the output
-                    def trufflehogOutput = sh(script: 'trufflehog --regex --entropy=True .', returnStdout: true).trim()
-                    
-                    // Print the TruffleHog output with ANSI color codes
-                    echo "\u001B[33m${trufflehogOutput}\u001B[0m"
-                }
+             
             }  
     }
       stage('GitGuardian Scan') {
