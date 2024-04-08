@@ -18,7 +18,7 @@ pipeline {
                 sh 'ggshield secret scan ci'
               echo 'command executed'
                  script {
-                    def scanOutput = sh(script: 'ggshield secret scan --show-secrets --scan-paths . ci', returnStdout: true).trim()
+                    def scanOutput = sh(script: 'ggshield secret scan --show-secrets --json . ci', returnStdout: true).trim()
                     println "GitGuardian Scan Output: ${scanOutput}"
                 }
               //sh 'ggshield secret scan --show-secrets --scan-paths . ci'
