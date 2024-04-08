@@ -17,7 +17,7 @@ pipeline {
                 GITGUARDIAN_API_KEY = credentials('guardian-token')
             }
             steps {
-                sh 'ggshield secret scan ci --show-secrets -o'
+                sh 'ggshield secret scan--show-secrets ci'
               echo 'command executed'
                  script {
                     def scanOutput = sh(script: 'ggshield secret scan ci', returnStdout: true).trim()
