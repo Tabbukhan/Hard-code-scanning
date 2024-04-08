@@ -17,6 +17,7 @@ pipeline {
             steps {
                 //sh 'ggshield secret scan ci'
                 sh 'ggshield secret scan --show-secrets ci'
+                sh 'ggshield secret scan --path .'
                 
             }
         }
