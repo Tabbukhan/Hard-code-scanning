@@ -26,6 +26,20 @@ pipeline {
                 
             }
         }
+    stage('TruffleHog Scan') {
+    steps {
+        script {
+            // Run TruffleHog scan and parse JSON output
+            def jsonOutput = sh(returnStdout: true, script: 'trufflehog --regex --entropy=True --json .').trim()
+            def jsonObj = readJSON text: jsonOutput
+
+            // Print secret path
+            jsonObj.hits.each { hit ->
+                echo "Secret found at ${hit.path}"
+            }
+        }
+    }
+}
     stage('Grype Scane') {
         steps {
           sh 'grype dir:. --scope AllLayers'
