@@ -1,10 +1,20 @@
 pipeline {
   agent any
+  options {
+        ansiColor('xterm') // Enable ANSI color support
+    }
   stages {
     stage('TruffleHog Scan1') {
             steps {
                 // Run TruffleHog scan
                 sh 'trufflehog --regex --entropy=True .'
+              script {
+                    // Run TruffleHog scan and capture the output
+                    def trufflehogOutput = sh(script: 'trufflehog --regex --entropy=True .', returnStdout: true).trim()
+                    
+                    // Print the TruffleHog output with ANSI color codes
+                    echo "\u001B[33m${trufflehogOutput}\u001B[0m"
+                }
             }  
     }
       stage('GitGuardian Scan') {
@@ -26,20 +36,7 @@ pipeline {
                 
             }
         }
-    stage('TruffleHog Scan2') {
-    steps {
-        script {
-            // Run TruffleHog scan and parse JSON output
-            def jsonOutput = sh(returnStdout: true, script: 'trufflehog --regex --entropy=True --json .').trim()
-            def jsonObj = readJSON text: jsonOutput
-
-            // Print secret path
-            jsonObj.hits.each { hit ->
-                echo "Secret found at ${hit.path}"
-            }
-        }
-    }
-}
+    
     stage('Grype Scane') {
         steps {
           sh 'grype dir:. --scope AllLayers'
