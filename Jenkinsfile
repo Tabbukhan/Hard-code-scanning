@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('TruffleHog Scan') {
+    stage('TruffleHog Scan1') {
             steps {
                 // Run TruffleHog scan
                 sh 'trufflehog --regex --entropy=True .'
@@ -26,7 +26,7 @@ pipeline {
                 
             }
         }
-    stage('TruffleHog Scan') {
+    stage('TruffleHog Scan2') {
     steps {
         script {
             // Run TruffleHog scan and parse JSON output
