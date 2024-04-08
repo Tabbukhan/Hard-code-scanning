@@ -1,8 +1,6 @@
 pipeline {
   agent any
-  options {
-        ansiColor('xterm') // Enable ANSI color support
-    }
+  
   stages {
     stage('TruffleHog Scan1') {
             steps {
