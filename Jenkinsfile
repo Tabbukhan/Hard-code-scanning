@@ -39,16 +39,16 @@ pipeline {
 
     
       
-     // stage('Semgrep-Scan') {
-       //   environment {
+     stage('Semgrep-Scan') {
+          environment {
       // The following variable is required for a Semgrep Cloud Platform-connected scan:
-      //SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
-        //  }
-        //steps {
+      SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
+          }
+        steps {
           //sh 'pip3 install semgrep'
-          //sh 'semgrep ci'
-     // }
-    //}
+          sh 'semgrep ci'
+      }
+    }
   
   }
 }
