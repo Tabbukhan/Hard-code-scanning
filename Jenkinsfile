@@ -46,7 +46,7 @@ pipeline {
           }
         steps {
           //sh 'pip3 install semgrep'
-          sh 'semgrep ci'
+          sh 'semgrep ci --verbose'
 
            // Uncomment the following lines if Semgrep Cloud Platform > Findings Page does not create links
       // to the code that generated a finding or if you are not receiving PR or MR comments.
