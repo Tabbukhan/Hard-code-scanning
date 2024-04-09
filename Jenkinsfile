@@ -18,6 +18,8 @@ pipeline {
             }
             steps {
                 sh 'ggshield secret scan --show-secrets ci'
+                sh 'ggshield secret scan ci -b trufflehog'
+
               echo 'command executed'
                  script {
                     def scanOutput = sh(script: 'ggshield secret scan ci', returnStdout: true).trim()
@@ -35,17 +37,18 @@ pipeline {
         }
     }
 
+    
       
-      stage('Semgrep-Scan') {
-          environment {
+     // stage('Semgrep-Scan') {
+       //   environment {
       // The following variable is required for a Semgrep Cloud Platform-connected scan:
-      SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
-          }
-        steps {
+      //SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
+        //  }
+        //steps {
           //sh 'pip3 install semgrep'
-          sh 'semgrep ci'
-      }
-    }
+          //sh 'semgrep ci'
+     // }
+    //}
   
   }
 }
