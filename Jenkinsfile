@@ -34,5 +34,18 @@ pipeline {
           sh 'grype dir:. --scope AllLayers'
         }
     }
+
+      
+      stage('Semgrep-Scan') {
+          environment {
+      // The following variable is required for a Semgrep Cloud Platform-connected scan:
+      SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
+          }
+        steps {
+          //sh 'pip3 install semgrep'
+          sh 'semgrep ci'
+      }
+    }
+  
   }
 }
