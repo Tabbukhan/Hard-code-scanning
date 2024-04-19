@@ -53,16 +53,16 @@ pipeline {
   
   }
 
-  post {
-        success {
-            emailext subject: 'Build Successful',
-                      body: 'The Jenkins build was successful.',
-                      to: 'tabasum.khan@credmudra.com'
-        }
-        failure {
-            emailext subject: 'Build Failed',
-                      body: 'The Jenkins build failed.',
-                      to: 'tabasum.khan@credmudra.com'
-        }
-    }
+ // post {
+   //     success {
+     //       emailext subject: 'Build Successful',
+       //               body: 'The Jenkins build was successful.',
+         //             to: 'tabasum.khan@credmudra.com'
+        //}
+        //failure {
+          //  emailext subject: 'Build Failed',
+            //          body: 'The Jenkins build failed.',
+              //        to: 'tabasum.khan@credmudra.com'
+        //}
+    //}
 }
