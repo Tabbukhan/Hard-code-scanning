@@ -36,6 +36,11 @@ pipeline {
           sh 'grype dir:. --scope AllLayers'
         }
     }
+    stage('Trivy scan'){
+      steps{
+        sh "trivy "
+      }
+    }
 
     
       
