@@ -36,14 +36,7 @@ pipeline {
           sh 'grype dir:. --scope AllLayers'
         }
     }
-    stage('Trivy scan'){
-      steps{
-        sh "trivy "
-      }
-    }
-
     
-      
      stage('Semgrep-Scan') {
           environment {
       // The following variable is required for a Semgrep Cloud Platform-connected scan:
